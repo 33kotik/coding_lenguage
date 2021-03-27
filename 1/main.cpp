@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class equal1 {
+class equation {
 public:
     double a;
     double b;
@@ -46,7 +46,7 @@ public:
 
 int main() {
 
-    equal1 my;
+    equation my;
     while (true) {
         int c = 0;
         cout << "press 1 to read coefficient" << endl
