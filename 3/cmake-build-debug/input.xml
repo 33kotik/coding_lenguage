@@ -1,0 +1,20 @@
+<node> "4" </node>
+    <left>
+        <node>"2"
+        </node>
+    </left>
+    <right>
+        <node>"7"
+            <left>
+                <node>"5"
+                </node>
+            </left>
+            <right>
+                <node>"9"
+                </node>
+            </right>
+        </node>
+    </right>
+
+
+</node>
