@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alex4/Desktop/lang_cod/my_game/main.cpp
+iostream
+-
+bits/stdc++.h
+-
+math.h
+-
+random
+-
+locale.h
+-
+clocale
+-
+cstdlib
+-
+
