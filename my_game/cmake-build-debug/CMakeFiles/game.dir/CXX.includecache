@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game_autogen/mocs_compilation.cpp
+/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game_autogen/mocs_compilation.cpp
 
 /home/alex4/Desktop/lang_cod/my_game/main.cpp
 iostream

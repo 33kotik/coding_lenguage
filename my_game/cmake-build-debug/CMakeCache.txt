@@ -226,6 +226,24 @@ ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
+//The directory containing a CMake configuration file for Qt5Core.
+Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
+
+//The directory containing a CMake configuration file for Qt5Gui.
+Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
+
+//The directory containing a CMake configuration file for Qt5Widgets.
+Qt5Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets
+
+//The directory containing a CMake configuration file for Qt5.
+Qt5_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+
+//Value Computed by CMake
+game_BINARY_DIR:STATIC=/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug
+
+//Value Computed by CMake
+game_SOURCE_DIR:STATIC=/home/alex4/Desktop/lang_cod/my_game
+
 //Value Computed by CMake
 my_game_BINARY_DIR:STATIC=/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug
 

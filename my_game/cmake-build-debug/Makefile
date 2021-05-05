@@ -142,6 +142,19 @@ my_game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/build
 .PHONY : my_game/fast
 
+#=============================================================================
+# Target rules for targets named my_game_autogen
+
+# Build rule for target.
+my_game_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_game_autogen
+.PHONY : my_game_autogen
+
+# fast build rule for target.
+my_game_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game_autogen.dir/build.make CMakeFiles/my_game_autogen.dir/build
+.PHONY : my_game_autogen/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -169,6 +182,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+my_game_autogen/mocs_compilation.o: my_game_autogen/mocs_compilation.cpp.o
+
+.PHONY : my_game_autogen/mocs_compilation.o
+
+# target to build an object file
+my_game_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.o
+.PHONY : my_game_autogen/mocs_compilation.cpp.o
+
+my_game_autogen/mocs_compilation.i: my_game_autogen/mocs_compilation.cpp.i
+
+.PHONY : my_game_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+my_game_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.i
+.PHONY : my_game_autogen/mocs_compilation.cpp.i
+
+my_game_autogen/mocs_compilation.s: my_game_autogen/mocs_compilation.cpp.s
+
+.PHONY : my_game_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+my_game_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.s
+.PHONY : my_game_autogen/mocs_compilation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -177,10 +217,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... my_game_autogen"
 	@echo "... my_game"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... my_game_autogen/mocs_compilation.o"
+	@echo "... my_game_autogen/mocs_compilation.i"
+	@echo "... my_game_autogen/mocs_compilation.s"
 .PHONY : help
 
 

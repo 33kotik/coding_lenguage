@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="my_game"/>
+		<Option title="game"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Gui\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Widgets\;"/>
@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="my_game">
-				<Option output="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game" prefix_auto="0" extension_auto="0"/>
+			<Target title="game">
+				<Option output="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -47,7 +47,7 @@
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
-					<Add directory="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game_autogen/include"/>
+					<Add directory="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game_autogen/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
 					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
@@ -62,14 +62,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_game"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 game"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="my_game/fast">
-				<Option output="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game" prefix_auto="0" extension_auto="0"/>
+			<Target title="game/fast">
+				<Option output="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -78,7 +78,7 @@
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
-					<Add directory="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game_autogen/include"/>
+					<Add directory="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game_autogen/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
 					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
@@ -93,28 +93,28 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_game/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 game/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="my_game_autogen">
+			<Target title="game_autogen">
 				<Option working_dir="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_game_autogen"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 game_autogen"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/my_game_autogen/mocs_compilation.cpp">
-			<Option target="my_game"/>
+		<Unit filename="/home/alex4/Desktop/lang_cod/my_game/cmake-build-debug/game_autogen/mocs_compilation.cpp">
+			<Option target="game"/>
 		</Unit>
 		<Unit filename="/home/alex4/Desktop/lang_cod/my_game/main.cpp">
-			<Option target="my_game"/>
+			<Option target="game"/>
 		</Unit>
 		<Unit filename="/home/alex4/Desktop/lang_cod/my_game/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

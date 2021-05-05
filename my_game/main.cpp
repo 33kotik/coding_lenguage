@@ -5,9 +5,13 @@
 #include <locale.h>
 #include <clocale>
 #include <cstdlib>
+#include <QApplication>
+#include <QPushButton>
+
 //#include "windows.h"
 #define FREE if (a==' ')
 using namespace std;
+
 //Shared_ptr
 //#define CHECK_BORDER x+1
 //        Pure Virtual functions
@@ -16,7 +20,12 @@ class point {
 public:
     int color;
     bool bonus;
-    int x;
+    bool used;
+    shared_ptr<point>next_x;//x+1
+    shared_ptr<point>next_y;//y+1
+    shared_ptr<point>prev_x;//x-1
+    shared_ptr<point>prev_y;//y-1
+
     int y;
 
 };
@@ -36,7 +45,7 @@ public:
         for (int x = 0; x < gameSize; x++) {
             for (int y = 0; y < gameSize; y++) {
                 field[x][y].color = rand() % color_count + 1;
-                field[x][y].bonus = (rand() %25 == 3);
+                field[x][y].bonus = (rand() % 25 == 3);
             }
         }
     };
@@ -49,6 +58,7 @@ public:
             }
         }
     };
+
     void showFieldBonus() {
         for (int x = 0; x < gameSize; x++) {
             cout << endl;
@@ -85,69 +95,103 @@ public:
     }
 
     void nextDel(int x, int y, int way_length, int start_color) {
-        if (x < gameSize && y < gameSize && x >= 0 && y >= 0 && field[x][y].color == start_color) {
+        if (x < gameSize && y < gameSize && x >= 0 && y >= 0 && field[x][y].color == start_color &&
+            field[x][y].used == 0) {
+
+            if (field[x][y].bonus)
+                if (rand() % 2)
+                    reColor(x, y);
+                else
+                    boom(x, y);
             recDelite(x, y, way_length + 1);
         }
-        if (way_length >= 3) {
-            for (int i = 0; i < x_way_for_delete.size(); i++)
-                field[x_way_for_delete[i]][y_way_for_delete[i]].color = 0;
-        }
+
     }
 
     void recDelite(int x, int y, int way_length) {
+        x_way_for_delete.push_back(x);
+        y_way_for_delete.push_back(y);
         int start_color = field[x][y].color;
-//        if (x)
-        if (way_length >= 3)
-            field[x][y].color = 0;
+        field[x][y].used = true;
         nextDel(x + 1, y, way_length, start_color);
-        if (way_length >= 3)
-            field[x][y].color = 0;
         nextDel(x, y + 1, way_length, start_color);
-        if (way_length >= 3)
-            field[x][y].color = 0;
         nextDel(x - 1, y, way_length, start_color);
-        if (way_length >= 3)
-            field[x][y].color = 0;
         nextDel(x, y - 1, way_length, start_color);
-        if (way_length >= 3)
-            field[x][y].color = 0;
-
         if (way_length >= 3) {
-            for (int i = 0; i < x_way_for_delete.size(); i++)
+            for (int i = 0; i < x_way_for_delete.size(); i++) {
                 field[x_way_for_delete[i]][y_way_for_delete[i]].color = 0;
-//            x_way_for_delete.clear();
+                field[x_way_for_delete[i]][y_way_for_delete[i]].bonus = 0;
+            }
+            //            x_way_for_delete.clear();
 //            y_way_for_delete.clear();
         }
         x_way_for_delete.clear();
         y_way_for_delete.clear();
-
     }
 
-    void check() {
+    void shift() {
         for (int x = 0; x < gameSize; x++) {
+//            vector <point> notnull;
+            int pos = 0;
             for (int y = 0; y < gameSize; y++) {
-                if (field[x][y].color != 0)
-                    recDelite(x, y, 0);
+                if (field[x][y].color != 0) {
+                    field[x][pos] = field[x][y];
+                    pos++;
+                }
+                if (pos != y + 1)
+                    field[x][y].color = 0;
             }
         }
     }
 
+    void check() {
+    bool end_flag = true;
+    int count_points=0;
+    int count_points_new=0;
+    while (true) {
+        end_flag= false;
+        for (int x = 0; x < gameSize; x++) {
+            for (int y = 0; y < gameSize; y++) {
+                if (field[x][y].color != 0) {
+                    recDelite(x, y, 1);
+                    count_points_new++;
+                }
+            }
+        }
+        if (count_points_new==count_points)
+            break;
+        else
+            count_points=count_points_new;
+        count_points_new=0;
+        for (int x = 0; x < gameSize; x++) {
+            for (int y = 0; y < gameSize; y++) {
+                field[x][y].used = false;
+            }
+        }
+        shift();
+    }
+}
+
 };
 
 //Inheritance
-int main() {
+int main(int argc, char *argv[]) {
 //    cout << "Hello, World!" << std::endl;
     auto ptr = make_shared<int>();
 //        return 0;
     string comand;
     game play;
+    QApplication a(argc, argv);
+    QPushButton button("Hello world!", nullptr);
+    button.resize(200, 100);
+    button.show();
     while (comand != "0") {
 //        cin >> comand;
         play.showFieldColor();
         cout << endl;
         play.check();
         play.showFieldColor();
-        cout << endl;
+
         cin >> comand;
         cout << endl;
 //        if (comand == "1") {
