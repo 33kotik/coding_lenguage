@@ -1,21 +1,30 @@
-cmake_minimum_required(VERSION 3.19)
-project(my_game)
+cmake_minimum_required(VERSION 3.3)
+project(gtk_test)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(QT_VERSION 5)
-set(REQUIRED_LIBS Core Gui Widgets)
-set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
+set(SOURCE_FILES main.cpp)
+add_executable(gtk_test ${SOURCE_FILES})
 
-add_executable(${PROJECT_NAME} main.cpp)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 
-if (NOT CMAKE_PREFIX_PATH)
-    message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
-            "(-DCMAKE_PREFIX_PATH=\"path/to/Qt/lib/cmake\" or -DCMAKE_PREFIX_PATH=/usr/include/{host}/qt{version}/ on Ubuntu)")
-endif ()
+include_directories(${GTK3_INCLUDE_DIRS})
+link_directories(${GTK3_LIBRARY_DIRS})
 
-find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
-target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
+add_definitions(${GTK3_CFLAGS_OTHER})
+
+target_link_libraries(gtk_test ${GTK3_LIBRARIES})
+#
+find_package(PkgConfig)
+pkg_check_modules(GTKMM gtkmm-3.0)
+
+include_directories(${GTKMM_INCLUDE_DIRS})
+link_directories(${GTKMM_LIBRARY_DIRS})
+
+#cmake_minimum_required(VERSION 3.19)
+#project(my_game)
+#
+#set(CMAKE_CXX_STANDARD 20)
+#
+#add_executable(my_game main.cpp)

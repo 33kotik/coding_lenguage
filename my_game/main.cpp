@@ -5,9 +5,8 @@
 #include <locale.h>
 #include <clocale>
 #include <cstdlib>
-#include <QApplication>
-#include <QPushButton>
-
+//# include <gtk/gtk.h>
+//#include <gtkmm.h>
 //#include "windows.h"
 #define FREE if (a==' ')
 using namespace std;
@@ -21,17 +20,19 @@ public:
     int color;
     bool bonus;
     bool used;
-    shared_ptr<point>next_x;//x+1
-    shared_ptr<point>next_y;//y+1
-    shared_ptr<point>prev_x;//x-1
-    shared_ptr<point>prev_y;//y-1
+    shared_ptr<point> next_x;//x+1
+    shared_ptr<point> next_y;//y+1
+    shared_ptr<point> prev_x;//x-1
+    shared_ptr<point> prev_y;//y-1
 
     int y;
 
 };
+//#include <GL/glut.h>
 
 class game {
 public:
+
     int xSize = 32;
     int gameSize = 8;
 //    vector<vector<point>> field ;
@@ -46,6 +47,14 @@ public:
             for (int y = 0; y < gameSize; y++) {
                 field[x][y].color = rand() % color_count + 1;
                 field[x][y].bonus = (rand() % 25 == 3);
+                if (x > 0) {
+                    field[x][y].prev_x = make_shared<point>(field[x - 1][y]);
+                    field[x-1][y].next_x=make_shared<point>(field[x][y]);
+                }
+                if (y > 0) {
+                    field[x][y].prev_y = make_shared<point>(field[x][y - 1]);
+                    field[x][y - 1].next_y = make_shared<point>(field[x][y]);
+                }
             }
         }
     };
@@ -145,46 +154,44 @@ public:
     }
 
     void check() {
-    bool end_flag = true;
-    int count_points=0;
-    int count_points_new=0;
-    while (true) {
-        end_flag= false;
-        for (int x = 0; x < gameSize; x++) {
-            for (int y = 0; y < gameSize; y++) {
-                if (field[x][y].color != 0) {
-                    recDelite(x, y, 1);
-                    count_points_new++;
+        bool end_flag = true;
+        int count_points = 0;
+        int count_points_new = 0;
+        while (true) {
+            end_flag = false;
+            for (int x = 0; x < gameSize; x++) {
+                for (int y = 0; y < gameSize; y++) {
+                    if (field[x][y].color != 0) {
+                        recDelite(x, y, 1);
+                        count_points_new++;
+                    }
                 }
             }
-        }
-        if (count_points_new==count_points)
-            break;
-        else
-            count_points=count_points_new;
-        count_points_new=0;
-        for (int x = 0; x < gameSize; x++) {
-            for (int y = 0; y < gameSize; y++) {
-                field[x][y].used = false;
+            if (count_points_new == count_points)
+                break;
+            else
+                count_points = count_points_new;
+            count_points_new = 0;
+            for (int x = 0; x < gameSize; x++) {
+                for (int y = 0; y < gameSize; y++) {
+                    field[x][y].used = false;
+                }
             }
+            shift();
         }
-        shift();
     }
-}
 
 };
 
 //Inheritance
 int main(int argc, char *argv[]) {
-//    cout << "Hello, World!" << std::endl;
+
     auto ptr = make_shared<int>();
 //        return 0;
     string comand;
     game play;
-    QApplication a(argc, argv);
-    QPushButton button("Hello world!", nullptr);
-    button.resize(200, 100);
-    button.show();
+
+
     while (comand != "0") {
 //        cin >> comand;
         play.showFieldColor();

@@ -51,11 +51,21 @@ public:
 class student {
 public:
     string name;
-    int score;
 
-    virtual vector<double> get_solution(equation cur_equal) {
+
+    virtual vector<double> get_solution(equation cur_equal)=0;
+
+//    bool  operator< (const student st1, const student st2)
+//    {
+//        return (st1.name<st2.name);
+//    }
+    friend bool operator<(const student &x, const student &y);
+    void printwww(){
+        cout<<'WWWW';
     }
 };
+
+bool operator<(const student &x, const student &y) { return x.name < y.name; }
 
 class bad_student : public student {
 public:
@@ -86,31 +96,86 @@ class good_student : public student {
     }
 };
 
-class result_table {
-public:
-    map<string, int> student;
-//    students['vasia']+=1;
-//    studen
-};
 
 class teacher {
 public:
-    result_table result;
 
-    void check_solution(equation cur_equal, vector<double> solution, string name) {
-        int score = 0;
-        if (solution.size() != 1) {
+    map<student*, int> result_table;
 
-            for (int i : cur_equal.solve()) {
-                if (x != solution[])
-            }
+    void check_solution(equation cur_equal, student* cur_student) {
+        vector <double>  student_answer= cur_student->get_solution(cur_equal);
+        if (student_answer.size() != 1) {
+            auto ans = cur_equal.solve();
+            if (ans[0] == student_answer[0] && ans[1] == student_answer[1])
+                result_table[cur_student] += 1;
+        }
+//        vector<double>().swap(student_answer);
+//        delete(student_answer);
+    }
+
+    void show_result() {
+        for (auto i : result_table) {
+            cout << i.first->name << " " << i.second << endl;
         }
     }
+
+//    student find_student(string name) {
+//        for (auto i : result_table) {
+//
+//        }
+//    }
 };
 
+
 int main() {
+    vector<equation> questions;
+//    vector<student> swqsdd;
+    teacher my_teacher;
     srand(time(nullptr));
-//    freopen("tasks.txt","r+",stdin);
-//    cout<<rand()%100<<endl<<rand()%100;
+    freopen("tasks.txt", "r+", stdin);
+    cerr << "вводим колличество учеников и список класса" << endl;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        string name;
+//        equation input_eq
+        cin >> name;
+        int type = rand() % 3;
+        if (type == 0) {
+            bad_student* tmp;
+            tmp->name = name;
+            my_teacher.result_table[tmp] = 0;
+//            my_class.push_back(tmp);
+        } else if (type == 1) {
+            std_student* tmp;
+            tmp->name = name;
+            my_teacher.result_table[tmp] = 0;
+            //            my_class.push_back(tmp);
+        } else {
+            good_student* tmp;
+            tmp->name = name;
+            my_teacher.result_table[tmp] = 0;
+//            my_class.push_back(tmp);
+        }
+    }
+    cerr
+            << "вводим число задач m и коффичиенты a b c квадратных уравнений уравнений которые распределяться рандомно между студентами"
+            << endl;
+    int m;
+    cin >> m;
+    for (int i = 0; i < n; i++) {
+        equation input_eq{};
+        cin >> input_eq.a >> input_eq.b >> input_eq.c;
+        questions.push_back(input_eq);
+    }
+    cerr << "теперь экзамен введите число задач выдаваемых задач k (максисмум m)" << endl;
+    int k;
+    cin >> k;
+    for (auto person :my_teacher.result_table) {
+        for (int i = 0; i < k; i++)
+            my_teacher.check_solution(questions[rand() % m], person.first);
+    }
+    cerr << "результаты" << endl;
+    my_teacher.show_result();
     return 0;
 }

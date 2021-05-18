@@ -130,30 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named my_game
+# Target rules for targets named gtk_test
 
 # Build rule for target.
-my_game: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_game
-.PHONY : my_game
+gtk_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtk_test
+.PHONY : gtk_test
 
 # fast build rule for target.
-my_game/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/build
-.PHONY : my_game/fast
-
-#=============================================================================
-# Target rules for targets named my_game_autogen
-
-# Build rule for target.
-my_game_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_game_autogen
-.PHONY : my_game_autogen
-
-# fast build rule for target.
-my_game_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game_autogen.dir/build.make CMakeFiles/my_game_autogen.dir/build
-.PHONY : my_game_autogen/fast
+gtk_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gtk_test.dir/build.make CMakeFiles/gtk_test.dir/build
+.PHONY : gtk_test/fast
 
 main.o: main.cpp.o
 
@@ -161,7 +148,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gtk_test.dir/build.make CMakeFiles/gtk_test.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -170,7 +157,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gtk_test.dir/build.make CMakeFiles/gtk_test.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -179,35 +166,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gtk_test.dir/build.make CMakeFiles/gtk_test.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-my_game_autogen/mocs_compilation.o: my_game_autogen/mocs_compilation.cpp.o
-
-.PHONY : my_game_autogen/mocs_compilation.o
-
-# target to build an object file
-my_game_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.o
-.PHONY : my_game_autogen/mocs_compilation.cpp.o
-
-my_game_autogen/mocs_compilation.i: my_game_autogen/mocs_compilation.cpp.i
-
-.PHONY : my_game_autogen/mocs_compilation.i
-
-# target to preprocess a source file
-my_game_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.i
-.PHONY : my_game_autogen/mocs_compilation.cpp.i
-
-my_game_autogen/mocs_compilation.s: my_game_autogen/mocs_compilation.cpp.s
-
-.PHONY : my_game_autogen/mocs_compilation.s
-
-# target to generate assembly for a file
-my_game_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_game.dir/build.make CMakeFiles/my_game.dir/my_game_autogen/mocs_compilation.cpp.s
-.PHONY : my_game_autogen/mocs_compilation.cpp.s
 
 # Help Target
 help:
@@ -217,14 +177,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... my_game_autogen"
-	@echo "... my_game"
+	@echo "... gtk_test"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... my_game_autogen/mocs_compilation.o"
-	@echo "... my_game_autogen/mocs_compilation.i"
-	@echo "... my_game_autogen/mocs_compilation.s"
 .PHONY : help
 
 
