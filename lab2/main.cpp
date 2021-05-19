@@ -51,8 +51,8 @@ public:
 class student {
 public:
     string name;
-
-
+    int score=0;
+    student(string new_name){name = new_name;}
     virtual vector<double> get_solution(equation cur_equal)=0;
 
 //    bool  operator< (const student st1, const student st2)
@@ -60,16 +60,13 @@ public:
 //        return (st1.name<st2.name);
 //    }
     friend bool operator<(const student &x, const student &y);
-    void printwww(){
-        cout<<'WWWW';
-    }
 };
 
 bool operator<(const student &x, const student &y) { return x.name < y.name; }
 
 class bad_student : public student {
 public:
-
+    bad_student(string new_name) : student(new_name){}
     vector<double> get_solution(equation cur_equal) {
         vector<double> ans;
         ans.push_back(0);
@@ -79,6 +76,8 @@ public:
 
 class std_student : public student {
 public:
+    std_student(string new_name) : student(new_name){}
+
     vector<double> get_solution(equation cur_equal) {
         if (rand() % 2) {
             vector<double> ans = cur_equal.solve();
@@ -91,31 +90,34 @@ public:
 };
 
 class good_student : public student {
+
     vector<double> get_solution(equation cur_equal) {
         return cur_equal.solve();
     }
+
+public:
+    good_student(string new_name) : student(new_name){}
 };
 
 
 class teacher {
 public:
 
-    map<student*, int> result_table;
 
     void check_solution(equation cur_equal, student* cur_student) {
         vector <double>  student_answer= cur_student->get_solution(cur_equal);
         if (student_answer.size() != 1) {
             auto ans = cur_equal.solve();
             if (ans[0] == student_answer[0] && ans[1] == student_answer[1])
-                result_table[cur_student] += 1;
+                cur_student->score+=1;
         }
 //        vector<double>().swap(student_answer);
 //        delete(student_answer);
     }
 
-    void show_result() {
-        for (auto i : result_table) {
-            cout << i.first->name << " " << i.second << endl;
+    void show_result(vector<student*>& stud_vector) {
+        for (auto i :stud_vector ) {
+            cout << i->name<< " " << i->score<< endl;
         }
     }
 
@@ -126,44 +128,47 @@ public:
 //    }
 };
 
+void fill_students(vector<student*>& stud_vector,int k){
+    int rng;
 
-int main() {
-    vector<equation> questions;
-//    vector<student> swqsdd;
-    teacher my_teacher;
-    srand(time(nullptr));
-    freopen("tasks.txt", "r+", stdin);
-    cerr << "вводим колличество учеников и список класса" << endl;
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < k; i++){
+        int type = rand() % 3;
+
         string name;
 //        equation input_eq
         cin >> name;
-        int type = rand() % 3;
         if (type == 0) {
-            bad_student* tmp;
-            tmp->name = name;
-            my_teacher.result_table[tmp] = 0;
+            stud_vector.push_back(new bad_student(name));
 //            my_class.push_back(tmp);
         } else if (type == 1) {
-            std_student* tmp;
-            tmp->name = name;
-            my_teacher.result_table[tmp] = 0;
-            //            my_class.push_back(tmp);
+            stud_vector.push_back(new std_student(name));
         } else {
-            good_student* tmp;
-            tmp->name = name;
-            my_teacher.result_table[tmp] = 0;
-//            my_class.push_back(tmp);
+            stud_vector.push_back(new good_student(name));
         }
+
+
     }
+
+
+}
+
+
+int main() {
+    vector<equation> questions;
+    vector<student*> group;
+    teacher my_teacher;
+    srand(time(nullptr));
+    freopen("tasks.txt", "r+", stdin);
+    cerr << "вводим колличество учеников n и список класса" << endl;
+    int n;
+    cin >> n;
+    fill_students(group,n);
     cerr
             << "вводим число задач m и коффичиенты a b c квадратных уравнений уравнений которые распределяться рандомно между студентами"
             << endl;
     int m;
     cin >> m;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < m; i++) {
         equation input_eq{};
         cin >> input_eq.a >> input_eq.b >> input_eq.c;
         questions.push_back(input_eq);
@@ -171,11 +176,12 @@ int main() {
     cerr << "теперь экзамен введите число задач выдаваемых задач k (максисмум m)" << endl;
     int k;
     cin >> k;
-    for (auto person :my_teacher.result_table) {
+//    cout<<k;
+    for (auto person :group) {
         for (int i = 0; i < k; i++)
-            my_teacher.check_solution(questions[rand() % m], person.first);
+            my_teacher.check_solution(questions[rand() % m], person);
     }
     cerr << "результаты" << endl;
-    my_teacher.show_result();
+    my_teacher.show_result(group);
     return 0;
 }
