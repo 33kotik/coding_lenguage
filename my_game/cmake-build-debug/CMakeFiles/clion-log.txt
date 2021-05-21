@@ -1,6 +1,0 @@
-/snap/clion/151/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/alex4/Desktop/lang_cod/my_game
--- Checking for module 'gtkmm-3.0'
---   No package 'gtkmm-3.0' found
--- Configuring done
--- Generating done
--- Build files have been written to: /home/alex4/Desktop/lang_cod/my_game/cmake-build-debug
