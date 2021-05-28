@@ -57,10 +57,6 @@ public:
 
     virtual vector<double> get_solution(equation cur_equal) = 0;
 
-//    bool  operator< (const student st1, const student st2)
-//    {
-//        return (st1.name<st2.name);
-//    }
     friend bool operator<(const student &x, const student &y);
 };
 
@@ -106,7 +102,6 @@ public:
 class teacher {
 public:
 
-
     void check_solution(equation cur_equal, student *cur_student) {
         vector<double> student_answer = cur_student->get_solution(cur_equal);
         if (student_answer.size() != 1) {
@@ -114,8 +109,6 @@ public:
             if (ans[0] == student_answer[0] && ans[1] == student_answer[1])
                 cur_student->score += 1;
         }
-//        vector<double>().swap(student_answer);
-//        delete(student_answer);
     }
 
     void show_result(vector<student *> &stud_vector) {
@@ -123,22 +116,13 @@ public:
             cout << i->name << " " << i->score << endl;
         }
     }
-
-//    student find_student(string name) {
-//        for (auto i : result_table) {
-//
-//        }
-//    }
 };
 
 void fill_students(vector<student *> &stud_vector, int k) {
-    int rng;
-
     for (int i = 0; i < k; i++) {
         int type = rand() % 3;
 
         string name;
-//        equation input_eq
         cin >> name;
         if (type == 0) {
             stud_vector.push_back(new bad_student(name));
@@ -179,12 +163,16 @@ int main() {
     cerr << "теперь экзамен введите число задач выдаваемых задач k (максисмум m)" << endl;
     int k;
     cin >> k;
-//    cout<<k;
     for (auto person :group) {
         for (int i = 0; i < k; i++)
             my_teacher.check_solution(questions[rand() % m], person);
     }
     cerr << "результаты" << endl;
     my_teacher.show_result(group);
+    cerr << "чистим память" << endl;
+    vector<student *>().swap(group);
+    vector<equation>().swap(questions);
+
     return 0;
 }
+//удалять память (сделано)
