@@ -110,7 +110,14 @@ public:
                 cur_student->score += 1;
         }
     }
-
+    void start_exam(vector<student *> group ,vector<equation> questions, int m){
+        int count_of_questions;
+        cin >> count_of_questions;
+        for (auto person :group) {
+            for (int i = 0; i < count_of_questions; i++)
+                check_solution(questions[rand() % m], person);
+        }
+    }
     void show_result(vector<student *> &stud_vector) {
         for (auto i :stud_vector) {
             cout << i->name << " " << i->score << endl;
@@ -118,8 +125,10 @@ public:
     }
 };
 
-void fill_students(vector<student *> &stud_vector, int k) {
-    for (int i = 0; i < k; i++) {
+void fill_students(vector<student *> &stud_vector) {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
         int type = rand() % 3;
 
         string name;
@@ -139,6 +148,15 @@ void fill_students(vector<student *> &stud_vector, int k) {
 
 }
 
+void fill_questions(vector<equation> &questions){
+    int m;
+    cin >> m;
+    for (int i=0;i<m;i++){
+        equation input_eq{};
+        cin >> input_eq.a >> input_eq.b >> input_eq.c;
+        questions.push_back(input_eq);
+    }
+}
 
 int main() {
     vector<equation> questions;
@@ -146,33 +164,17 @@ int main() {
     teacher my_teacher;
     srand(time(nullptr));
     freopen("tasks.txt", "r+", stdin);
-    cerr << "вводим колличество учеников n и список класса" << endl;
-    int n;
-    cin >> n;
-    fill_students(group, n);
-    cerr
-            << "вводим число задач m и коффичиенты a b c квадратных уравнений уравнений которые распределяться рандомно между студентами"
-            << endl;
-    int m;
-    cin >> m;
-    for (int i = 0; i < m; i++) {
-        equation input_eq{};
-        cin >> input_eq.a >> input_eq.b >> input_eq.c;
-        questions.push_back(input_eq);
-    }
-    cerr << "теперь экзамен введите число задач выдаваемых задач k (максисмум m)" << endl;
-    int k;
-    cin >> k;
-    for (auto person :group) {
-        for (int i = 0; i < k; i++)
-            my_teacher.check_solution(questions[rand() % m], person);
-    }
-    cerr << "результаты" << endl;
+//    cerr << "вводим колличество учеников n и список класса" << endl;
+    fill_students(group);
+//    cerr << "вводим число задач m и коффичиенты a b c квадратных уравнений уравнений которые распределяться рандомно между студентами"<< endl;
+    fill_questions(questions);
+//    cerr << "теперь экзамен, введите число задач выдаваемых задач k (максисмум m)" << endl;
+    my_teacher.start_exam(group,questions,questions.size());
+//    cerr << "результаты" << endl;
     my_teacher.show_result(group);
-    cerr << "чистим память" << endl;
+//    cerr << "чистим память" << endl;
     vector<student *>().swap(group);
     vector<equation>().swap(questions);
-
     return 0;
 }
 //удалять память (сделано)
